@@ -67,6 +67,7 @@ const login = async (req, res) => {
 
     res.json({
       message: "Login successful",
+      mustChangePassword : user.must_change_password,
       user: { id: user.user_id, role: user.role },
     });
   } catch (error) {

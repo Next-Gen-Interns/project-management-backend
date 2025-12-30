@@ -15,7 +15,10 @@ const User = sequelize.define(
       allowNull: false,
       validate: {
         notEmpty: { msg: "Name is required" },
-        len: { args: [3, 100], msg: "Name must be between 3 and 100 characters" },
+        len: {
+          args: [3, 100],
+          msg: "Name must be between 3 and 100 characters",
+        },
       },
     },
 
@@ -35,6 +38,11 @@ const User = sequelize.define(
       validate: {
         len: { args: [6, 100], msg: "Password must be at least 6 characters" },
       },
+    },
+    
+    must_change_password: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
     },
 
     role: {

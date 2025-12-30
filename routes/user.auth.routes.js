@@ -3,6 +3,7 @@ const router = express.Router();
 const verifyToken = require("../middleware/auth.middleware");
 const authorizeRoles = require("../middleware/role.middleware");
 const { getMe } = require("../controller/user.controller");
+const { employeeRegister } = require("../controller/employee.controller");
 
 router.get("/admin", verifyToken, authorizeRoles("admin"), (req, res) => {
   res.json({
@@ -42,5 +43,12 @@ router.post("/logout", (req, res) => {
 });
 
 router.get("/me", verifyToken, getMe);
+
+router.post(
+  "/employee-create",
+  verifyToken,
+  authorizeRoles("admin"),
+  employeeRegister
+);
 
 module.exports = router;
